@@ -2,7 +2,6 @@ CS 575 Repository
 
 Michael A. Goodrich  
 Brigham Young University  
-Updated: January 2025
 
 ---
 
@@ -38,8 +37,8 @@ winget install -e --id Graphviz.Graphviz
 
 ### Base vs ML Dependencies
 
-- Base dependencies (NumPy, Pandas, NetworkX, Matplotlib, SciPy, Gensim, pydot, ipykernel) install automatically.
-- ML extras (installed later when needed): PyTorch and Torch Geometric.
+- Base dependencies (NumPy, Pandas, NetworkX, Matplotlib, SciPy, pydot, ipykernel) install automatically.
+- ML extras (installed later when needed): PyTorch, Torch Geometric, Gensim, and scikit-learn.
 
 Install ML extras when we reach those topics:
 
@@ -62,22 +61,50 @@ pytest tests
 
 ---
 
+### Branch Workflow
+
+- `main`: student-facing branch. Students pull updates from here to keep their clone current.
+- `instructor-branch`: staging branch for instructor tweaks before release.
+
+**Student update pattern**
+
+```bash
+git switch main
+git pull origin main
+```
+
+**Instructor release pattern**
+
+```bash
+git switch instructor-branch
+# develop and commit changes
+git push origin instructor-branch
+git switch main
+git merge instructor-branch
+git push origin main
+```
+
+Keep releases small and frequent so students can pull cleanly; resolve conflicts on `instructor-branch` before merging to `main`.
+
+---
+
 ### Project Structure
 
 ```
 .
 ├── src/
-│   └── course_utils/
+│   └── network_utilities/
+│   └── plotting_utilities/
 ├── tests/
 ├── notebooks/
-│   └── 00_intro.ipynb
+│   └── sequence_of_Jupyter_notebook_tutorials.ipynb
 ├── data/           # large datasets (ignored)
 ├── pyproject.toml
 ├── README.md
 └── .gitignore
 ```
 
-- `src/course_utils`: reusable Python utilities for class exercises.
+- `src/plotting_utils`: reusable plotting utilities for class exercises.
 - `notebooks`: Jupyter notebooks for demos and assignments.
 - `tests`: pytest-based unit/integration tests.
 - `data`: tracked folder with `.gitkeep`; contents are ignored by Git.

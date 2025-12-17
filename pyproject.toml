@@ -16,14 +16,8 @@ dependencies = [
 "networkx",
 "pandas",
 "scipy",
-"gensim",
 "python-louvain",
-"scikit-learn",
 ]
-
-
-#[project.scripts]
-#project1 = "project1.project1:project1cli"
 
 [project.optional-dependencies]
 dev = [
@@ -31,6 +25,8 @@ dev = [
   "mypy",
 ]
 ml = [
+  "gensim",
+  "scikit-learn",
   "torch>=2.2",
   "torch-geometric>=2.4",
 ]
